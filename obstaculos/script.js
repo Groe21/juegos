@@ -8,7 +8,7 @@ let gameActive = true;
 let obstacleSpeed = 3; // Velocidad inicial de caída de los obstáculos (en segundos)
 let obstacleIntervalTime = 2000; // Tiempo inicial entre la aparición de obstáculos (en milisegundos)
 
-// Mover el personaje con el mouse o el toque
+// Función para mover el personaje
 function moveCharacter(mouseX) {
     const containerRect = gameContainer.getBoundingClientRect();
     const posX = mouseX - containerRect.left;
@@ -35,7 +35,7 @@ function createObstacle() {
 
     const obstacle = document.createElement("div");
     obstacle.classList.add("obstacle");
-    obstacle.style.left = `${Math.random() * (gameContainer.clientWidth - 50)}px`;
+    obstacle.style.left = `${Math.random() * (gameContainer.clientWidth - obstacle.clientWidth)}px`;
     obstacle.style.animationDuration = `${obstacleSpeed}s`; // Ajusta la velocidad de caída
     gameContainer.appendChild(obstacle);
 
@@ -84,7 +84,7 @@ retryButton.addEventListener("click", () => {
 
 // Volver al menú
 menuButton.addEventListener("click", () => {
-    window.location.href = "menu.html"; // Redirige a la página del menú
+    window.location.href = "../menu.html"; // Redirige a la página del menú
 });
 
 // Iniciar el juego

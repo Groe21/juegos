@@ -6,13 +6,16 @@ body, html {
     align-items: center;
     height: 100%;
     background-color: #f0f0f0;
+    overflow: hidden; /* Aseguramos que no haya scroll */
 }
 
 .game-container {
     position: relative;
-    width: 300px;
-    height: 500px;
-    background-image: url('../img/fondo.gif');
+    width: 80vw; /* El contenedor ocupará el 80% del ancho de la ventana */
+    max-width: 500px; /* Limitar el tamaño máximo */
+    height: 80vh; /* El contenedor ocupará el 80% de la altura de la ventana */
+    max-height: 700px; /* Limitar el tamaño máximo */
+    background-image: url('img/fondo.gif'); /* Corregida la ruta */
     background-size: cover;
     background-position: center;
     border: 2px solid #000;
@@ -23,20 +26,24 @@ body, html {
     position: absolute;
     bottom: 0;
     left: 50%;
-    width: 50px;
-    height: 50px;
-    background-image: url('../img/astronave.png');
+    width: 10%; /* Ajusta el tamaño según el contenedor */
+    max-width: 50px; /* Limitar el tamaño máximo */
+    height: 50px; /* Fijar la altura para que sea visible */
+    background-image: url('img/astronave.png'); /* Corregida la ruta */
     background-size: cover;
+    background-position: center;
     transform: translateX(-50%);
 }
 
 .obstacle {
     position: absolute;
     top: 0;
-    width: 50px;
-    height: 50px;
-    background-image: url('../img/asteroide.png');
+    width: 10%; /* Ajusta el tamaño según el contenedor */
+    max-width: 50px; /* Limitar el tamaño máximo */
+    height: 50px; /* Fijar la altura para que sea visible */
+    background-image: url('img/asteroide.png'); /* Corregida la ruta */
     background-size: cover;
+    background-position: center;
     animation: fallObstacle 3s linear infinite;
 }
 
