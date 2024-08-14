@@ -1,0 +1,72 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #f0f0f0;
+}
+
+.game-container {
+    position: relative;
+    width: 300px;
+    height: 500px;
+    background-image: url('img/fondo.gif');
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #000;
+    overflow: hidden;
+}
+
+.character {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    background-image: url('img/astronave.png');
+    background-size: cover;
+    transform: translateX(-50%);
+}
+
+.obstacle {
+    position: absolute;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    background-image: url('img/asteroide.png');
+    background-size: cover;
+    animation: fallObstacle 3s linear infinite;
+}
+
+@keyframes fallObstacle {
+    from {
+        top: 0;
+    }
+    to {
+        top: 100%;
+    }
+}
+
+#game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: red;
+    text-align: center;
+    display: none;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
