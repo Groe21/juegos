@@ -27,7 +27,10 @@ body, html {
     width: 10%; /* Ajusta el tamaño según el contenedor */
     max-width: 50px; /* Limitar el tamaño máximo */
     height: 50px; /* Fijar la altura para que sea visible */
-    background-color: blue; /* Color del personaje */
+    background-image: url('img/delincuente.png'); /* Reemplaza con la ruta de la imagen del personaje */
+    background-size: cover; /* Ajusta la imagen para cubrir todo el área */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
     transform: translateX(-50%);
 }
 
@@ -37,15 +40,23 @@ body, html {
     width: 10%; /* Ajusta el tamaño según el contenedor */
     max-width: 50px; /* Limitar el tamaño máximo */
     height: 50px; /* Fijar la altura para que sea visible */
-    background-color: red; /* Color del obstáculo */
+    background-image: url('img/piso.png'); /* Reemplaza con la ruta de la imagen del obstáculo */
+    background-size: cover; /* Ajusta la imagen para cubrir todo el área */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
 }
+
 
 .bullet {
     position: absolute;
     width: 5%;
     height: 20px;
-    background-color: yellow; /* Color del disparo */
+    background-image: url('img/bala.png'); /* Reemplaza con la ruta de tu imagen */
+    background-size: cover; /* Ajusta la imagen para cubrir todo el área del disparo */
+    background-position: center; /* Centra la imagen en el disparo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
 }
+
 
 @keyframes fallObstacle {
     from {
