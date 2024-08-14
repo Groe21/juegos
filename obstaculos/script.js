@@ -3,8 +3,10 @@ const gameContainer = document.querySelector(".game-container");
 const gameOverText = document.getElementById("game-over");
 const retryButton = document.getElementById("retry");
 const menuButton = document.getElementById("menu");
+const livesText = document.getElementById("lives");
 
 let gameActive = true;
+let lives = 5; // Vidas iniciales
 let obstacleSpeed = 3; // Velocidad inicial de caída de los obstáculos (en segundos)
 let obstacleIntervalTime = 2000; // Tiempo inicial entre la aparición de obstáculos (en milisegundos)
 
@@ -53,12 +55,23 @@ function createObstacle() {
             obstacleRect.right > characterRect.left &&
             obstacleRect.bottom > characterRect.top
         ) {
-            gameOver();
+            obstacle.remove(); // Elimina el obstáculo después de la colisión
             clearInterval(obstacleInterval);
+            loseLife(); // Llama a la función para perder una vida
         }
     }, 10);
 
     setTimeout(createObstacle, obstacleIntervalTime);
+}
+
+// Función para manejar la pérdida de vidas
+function loseLife() {
+    lives -= 1;
+    livesText.textContent = `Vidas: ${lives}`;
+
+    if (lives <= 0) {
+        gameOver();
+    }
 }
 
 // Aumentar la dificultad cada 5 segundos
@@ -84,7 +97,7 @@ retryButton.addEventListener("click", () => {
 
 // Volver al menú
 menuButton.addEventListener("click", () => {
-    window.location.href = "../menu.html"; // Redirige a la página del menú
+    window.location.href = "../index.html"; // Redirige a la página del menú
 });
 
 // Iniciar el juego

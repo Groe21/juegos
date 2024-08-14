@@ -77,3 +77,12 @@ button {
     font-size: 16px;
     cursor: pointer;
 }
+
+#lives {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+    color: rgb(57, 245, 0);
+    z-index: 10;
+}
