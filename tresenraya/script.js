@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
     const casillas = document.querySelectorAll(".casilla");
+    const resultadoTexto = document.getElementById("resultado");
+    const gameOverText = document.getElementById("game-over");
+    const retryButton = document.getElementById("retry");
+    const menuButton = document.getElementById("menu");
     let turno = "X";
     let juegoTerminado = false;
 
@@ -8,11 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!juegoTerminado && casilla.innerHTML === "") {
                 casilla.innerHTML = turno;
                 if (hayGanador()) {
-                    alert("¡El jugador " + turno + " ha ganado!");
-                    reiniciarJuego();
+                    mostrarResultado("¡El jugador " + turno + " ha ganado!");
                 } else if (tableroCompleto()) {
-                    alert("¡Empate!");
-                    reiniciarJuego();
+                    mostrarResultado("¡Empate!");
                 } else {
                     turno = turno === "X" ? "O" : "X";
                 }
@@ -42,11 +44,24 @@ document.addEventListener("DOMContentLoaded", function () {
         return Array.from(casillas).every(casilla => casilla.innerHTML !== "");
     }
 
+    function mostrarResultado(mensaje) {
+        resultadoTexto.innerHTML = mensaje;
+        gameOverText.classList.remove("hidden");
+        gameOverText.style.display = 'flex';
+    }
+
     function reiniciarJuego() {
         casillas.forEach(casilla => {
             casilla.innerHTML = "";
         });
         turno = "X";
         juegoTerminado = false;
+        gameOverText.classList.add("hidden");
+        gameOverText.style.display = "none";
     }
+
+    retryButton.addEventListener("click", reiniciarJuego);
+    menuButton.addEventListener("click", function () {
+        window.location.href = "../index.html"; // Reemplaza con la URL de tu menú principal
+    });
 });

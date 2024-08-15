@@ -1,0 +1,72 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #333;
+}
+
+canvas {
+    background-color: #000;
+    border: 2px solid #fff;
+}
+
+#game-over {
+    display: none; /* Asegúrate de que esté oculto inicialmente */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 24px;
+    text-align: center;
+}
+
+.hidden {
+    display: none !important; /* Fuerza que hidden realmente oculte */
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.buttons button {
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    margin: 10px;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttons button:hover {
+    background-color: #777;
+}
+
+.controls {
+    margin-top: 10px;
+}
+
+.controls button {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+    margin: 5px;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.controls button:hover {
+    background-color: #777;
+}
