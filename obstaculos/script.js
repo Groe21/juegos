@@ -4,11 +4,14 @@ const gameOverText = document.getElementById("game-over");
 const retryButton = document.getElementById("retry");
 const menuButton = document.getElementById("menu");
 const livesText = document.getElementById("lives");
+const scoreText = document.getElementById("score");
 
 let gameActive = true;
 let lives = 5; // Vidas iniciales
+let score = 0; // Puntuación inicial
 let obstacleSpeed = 3; // Velocidad inicial de caída de los obstáculos (en segundos)
 let obstacleIntervalTime = 2000; // Tiempo inicial entre la aparición de obstáculos (en milisegundos)
+let obstaclesAtOnce = 3; // Número de obstáculos que caen al mismo tiempo
 
 // Función para mover el personaje
 function moveCharacter(mouseX) {
@@ -31,37 +34,46 @@ gameContainer.addEventListener("touchmove", (e) => {
     moveCharacter(touch.clientX);
 });
 
-// Generar obstáculos
+// Generar múltiples obstáculos
 function createObstacle() {
     if (!gameActive) return;
 
-    const obstacle = document.createElement("div");
-    obstacle.classList.add("obstacle");
-    obstacle.style.left = `${Math.random() * (gameContainer.clientWidth - obstacle.clientWidth)}px`;
-    obstacle.style.animationDuration = `${obstacleSpeed}s`; // Ajusta la velocidad de caída
-    gameContainer.appendChild(obstacle);
+    for (let i = 0; i < obstaclesAtOnce; i++) {
+        const obstacle = document.createElement("div");
+        obstacle.classList.add("obstacle");
+        obstacle.style.left = `${Math.random() * (gameContainer.clientWidth - obstacle.clientWidth)}px`;
+        obstacle.style.animationDuration = `${obstacleSpeed}s`; // Ajusta la velocidad de caída
+        gameContainer.appendChild(obstacle);
 
-    const obstacleInterval = setInterval(() => {
-        const obstacleRect = obstacle.getBoundingClientRect();
-        const characterRect = character.getBoundingClientRect();
+        const obstacleInterval = setInterval(() => {
+            const obstacleRect = obstacle.getBoundingClientRect();
+            const characterRect = character.getBoundingClientRect();
 
-        if (obstacleRect.top > gameContainer.clientHeight) {
-            obstacle.remove();
-            clearInterval(obstacleInterval);
-        }
+            if (obstacleRect.top > gameContainer.clientHeight) {
+                obstacle.remove();
+                clearInterval(obstacleInterval);
+                increaseScore(); // Incrementa la puntuación al esquivar un obstáculo
+            }
 
-        if (
-            obstacleRect.left < characterRect.right &&
-            obstacleRect.right > characterRect.left &&
-            obstacleRect.bottom > characterRect.top
-        ) {
-            obstacle.remove(); // Elimina el obstáculo después de la colisión
-            clearInterval(obstacleInterval);
-            loseLife(); // Llama a la función para perder una vida
-        }
-    }, 10);
+            if (
+                obstacleRect.left < characterRect.right &&
+                obstacleRect.right > characterRect.left &&
+                obstacleRect.bottom > characterRect.top
+            ) {
+                obstacle.remove(); // Elimina el obstáculo después de la colisión
+                clearInterval(obstacleInterval);
+                loseLife(); // Llama a la función para perder una vida
+            }
+        }, 10);
+    }
 
     setTimeout(createObstacle, obstacleIntervalTime);
+}
+
+// Función para incrementar la puntuación
+function increaseScore() {
+    score += 1;
+    scoreText.textContent = `Meteoritos esquivados: ${score}`;
 }
 
 // Función para manejar la pérdida de vidas
@@ -74,13 +86,13 @@ function loseLife() {
     }
 }
 
-// Aumentar la dificultad cada 5 segundos
+// Aumentar la dificultad cada 3 segundos
 function increaseDifficulty() {
     if (!gameActive) return;
 
     obstacleSpeed *= 0.9; // Aumenta la velocidad disminuyendo el tiempo de caída
     obstacleIntervalTime *= 0.9; // Reduce el tiempo entre obstáculos, aumentando la cantidad de obstáculos
-    setTimeout(increaseDifficulty, 5000); // Incrementa la dificultad cada 5 segundos
+    setTimeout(increaseDifficulty, 3000); // Incrementa la dificultad cada 3 segundos
 }
 
 // Función de fin de juego

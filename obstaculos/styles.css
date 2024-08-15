@@ -78,11 +78,22 @@ button {
     cursor: pointer;
 }
 
-#lives {
+#lives, #score {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 20px;
-    color: rgb(57, 245, 0);
+    font-size: 4vw; /* Escala el texto con el ancho de la ventana */
     z-index: 10;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Añade un sombreado para mejor visibilidad */
+}
+
+#lives {
+    top: 5%;
+    left: 5%;
+    color: #39f500;
+}
+
+#score {
+    top: 5%;
+    right: 5%;
+    color: #ffffff;
 }
