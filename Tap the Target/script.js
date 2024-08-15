@@ -3,6 +3,7 @@ const scoreText = document.getElementById("score");
 const timerText = document.getElementById("timer");
 const gameOverText = document.getElementById("game-over");
 const retryButton = document.getElementById("retry");
+const menuButton = document.getElementById("menu");
 let score = 0;
 let timeLeft = 30;
 let gameActive = true;
@@ -48,6 +49,11 @@ function endGame() {
     gameOverText.style.display = "block";
     document.getElementById("message").textContent = `Juego Terminado! Tu puntuación es: ${score}`;
 }
+
+// Redirigir al menú principal
+menuButton.addEventListener("click", () => {
+    window.location.href = "../index.html"; // Ajusta la ruta según la ubicación de tu archivo index.html
+});
 
 // Reiniciar el juego
 retryButton.addEventListener("click", () => {
